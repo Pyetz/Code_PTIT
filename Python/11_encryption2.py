@@ -21,7 +21,7 @@ def encryption(test_cases):
         for i in case[index+1:]: 
             result += P[(P.index(i) + K) % 28]
             
-        print(result)
+        print(result[::-1])
 
 def main():
     test_cases = input_test_cases()

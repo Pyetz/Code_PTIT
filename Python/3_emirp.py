@@ -10,32 +10,30 @@ def sieve_of_eratosthenes(n = 1000001):
 def is_symmetric(n):
     return str(n) == str(n)[::-1]
 
-def input_test_cases(test_num):
-    test_cases = []
-    for i in range(test_num):
-        test_cases.append(int(input()))
-    return test_cases
+def emirp_lst(primes, case):
+    prime_set = set(primes)
+    result = ""
+    for prime in primes:
+        reversed_prime = int(str(prime)[::-1])
+        if reversed_prime > case:
+            break
+        if prime not in prime_set:
+            continue
+        if reversed_prime in prime_set:
+            if not is_symmetric(prime) and not is_symmetric(reversed_prime):
+                result += str(prime) + " " + str(reversed_prime)+ " "
+                prime_set.remove(reversed_prime)
 
-def print_emirp(primes, test_cases):
-    for case in test_cases:
-        result = ""
-        first = True
-        for i in range(case):
-            if i in primes and not is_symmetric(i):
-                if first:
-                    result += str(i)
-                    first = False
-                else:
-                    result += " " + str(i)
-        print(result)
+    return result
 
 def main():
     test_num = int(input())
-    test_cases = input_test_cases(test_num)
-    primes = sieve_of_eratosthenes(max(test_cases) + 1)
+    test_cases = [int(input()) for _ in range(test_num)]
+    max_case = max(test_cases)
+    primes = sieve_of_eratosthenes(max_case)
 
-    print_emirp(primes, test_cases)
+    for case in test_cases:
+        print(emirp_lst(primes, case))
+
     
 main()
-
-    

@@ -1,32 +1,35 @@
+def round_float(num):
+    dot_index = str(num).find('.')
+    if num[dot_index+1] >= '5':
+        return str(int(num[:dot_index])+1)
+    else:
+        return num[:dot_index]
+
 def round_num(num):
-    if num <= 10:
+    if int(num) <= 10:
         return num
     else:
-        result = ""
-        current_idx = -1
-        while num[current_idx] != num[0]:
-            if int(num[current_idx]) >= 5:
-                num[current_idx-1] = str(int(num[current_idx-1]) + 1)
-            result += "0"
-            current_idx -= 1
-
-        result += num[0]
+        result = ''
+        round_num = num
+        for _ in range(0, len(num) - 2):
+            round_num = round_float(round_num[:-1] + '.' + round_num[-1])
+            result += '0'
+        result = round_float(round_num[:-1] + '.' + round_num[-1]) + '0' + result
+        
+        
         return result
 
 def input_test_cases(test_num):
     test_cases = []
     for _ in range(test_num):
-        test_cases.append(int(input()))
+        test_cases.append(input())
     return test_cases
-
-def print_rounded(test_cases):
-    for case in test_cases:
-        print(round_num(case))
 
 def main():
     test_num = int(input())
     test_cases = input_test_cases(test_num)
 
-    print_rounded(test_cases)
+    for case in test_cases:
+        print(round_num(case))
     
 main()

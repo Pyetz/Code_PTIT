@@ -24,7 +24,7 @@ def emirp_lst(primes, case):
                 result += str(prime) + " " + str(reversed_prime)+ " "
                 prime_set.remove(reversed_prime)
 
-    return result
+    return result.strip()
 
 def main():
     test_num = int(input())
@@ -34,6 +34,5 @@ def main():
 
     for case in test_cases:
         print(emirp_lst(primes, case))
-
     
 main()

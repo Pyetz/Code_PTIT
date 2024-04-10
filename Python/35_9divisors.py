@@ -1,25 +1,15 @@
-def include_9_divisor(num):
-    count = 0
-    for i in range(2, int(num**0.5)+1):
-        if num % i == 0:
-            if i*i != num:
-                count += 2
-            else:
-                count += 1
-            if count > 7:
-                return False
-    if count == 7:
-        return True
-    return False
-def main():
-    # num = int(input())
-    num = 1000000
-    count = 0
-    for i in range(1, num+1):
-        if include_9_divisor(i):
-            count += 1
+def mul(lst):
+    result = 1
+    for i in lst:
+        result *= i
+    return result
 
-    print(count)
+def _9_divisor_sequence(upper_bound = 10**9):
+    pass
+
+def main():
+    num = int(input())
+    print(len(_9_divisor_sequence(num)))
 
 
 main()

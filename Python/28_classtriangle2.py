@@ -17,23 +17,31 @@ class Triangle:
         b = self.p2.distance(self.p3)
         c = self.p3.distance(self.p1)
         if a + b <= c or b + c <= a or c + a <= b:
-            return 0
-        return ((a + b + c) * (a + b - c) * (b + c - a) * (c + a - b)) ** 0.5 / 4
+            return -1
+        return (((a + b + c) * (a + b - c) * (b + c - a) * (c + a - b)) ** 0.5) / 4
         
-    
-def main():
-    tess = int(input())
-    points = [(input().split()) for _ in range(tess)]
 
+def input_triangle(tess):
+    points = []
+    for _ in range(tess):
+        points.append(input().split())
+    triangles = []
     for point in points:
         p1 = Point(float(point[0]), float(point[1]))
         p2 = Point(float(point[2]), float(point[3]))
         p3 = Point(float(point[4]), float(point[5]))
-        t = Triangle(p1, p2, p3)
-        S = t.area()
-        if S == 0:
+        triangles.append(Triangle(p1, p2, p3))
+            
+    return triangles
+    
+def main():
+    tess = int(input())
+    triangles = input_triangle(tess)
+
+    for triangle in triangles:
+        if triangle.area() == -1:
             print('INVALID')
         else:
-            print(f'{S:.2f}')
+            print(f'{triangle.area():.2f}')
 
 main()

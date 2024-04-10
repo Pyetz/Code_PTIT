@@ -39,3 +39,4 @@ for _ in range(num_tests):
     p3 = Point(x3, y3)
     triangle = Triangle(p1, p2, p3)
     print(triangle.perimeter())
+    

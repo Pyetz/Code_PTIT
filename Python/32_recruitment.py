@@ -29,7 +29,7 @@ class Candidate:
             return "XUAT SAC"
         
 def rank_candidates(candidates):
-    return sorted(candidates, key = lambda x: (-x.avr_score, x.name))
+    return sorted(candidates, key = lambda x: x.avr_score, reverse = True)
         
 def input_candidates(tess):
     candidates = []
@@ -46,6 +46,6 @@ def main():
     candidates = rank_candidates(candidates)
 
     for candidate in candidates:
-        print(f'{candidate.id} {candidate.name} {candidate.avrscore():.2f} {candidate.classify()}')
+        print(candidate.id, candidate.name, format(candidate.avr_score, '.2f'), candidate.classify())
 
 main()
